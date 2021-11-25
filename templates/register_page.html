@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Registration Page</title>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <h3>用戶註冊</h3>
+    </div>
+    <div class="row">
+      <form id="signup">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" class="form-control" placeholder="Sunny Shen">
+        </div>
+        <div class="form-group">
+          <label for="origin">Origin</label>
+          <select id="origin" class="form-control">
+            <option selected>Taipei</option>
+            <option>Taichung</option>
+            <option>Kaohsiung</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <select id="age" class="form-control">
+            <option selected>below 10</option>
+            <option>11 - 15</option>
+            <option>16 - 20</option>
+            <option>21 - 25</option>
+            <option>26 - 30</option>
+            <option>31 - 35</option>
+            <option>36 - 40</option>
+            <option>41 - 45</option>
+            <option>46 - 50</option>
+            <option>51 - 55</option>
+            <option>56 - 60</option>
+            <option>above 60</option>
+          </select>
+        </div>
+        <div class="row">
+          <p>Choose your gender:</p>
+          <div class="col-sm">
+            <div class="form-group form-check">
+              <input id="male" type="checkbox" class="form-check-input" name="gender" value="male">
+              <label for="male">Male</label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group form-check">
+              <input id="female" type="checkbox" class="form-check-input" name="gender" value="female">
+              <label for="female">Female</label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-group form-check">
+              <input id="others" type="checkbox" class="form-check-input" name="gender" value="others">
+              <label for="others">Others</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <p>Choose your preference:</p>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div>
+              <input id="start1" type="checkbox" name="coldstart" value="自然景觀">
+              <label for="start1">自然景觀</label>
+            </div>
+            <div>
+              <input id="start2" type="checkbox" name="coldstart" value="歷史文物">
+              <label for="start2">歷史文物</label>
+            </div>
+            <div>
+              <input id="start3" type="checkbox" name="coldstart" value="購物採買">
+              <label for="start3">購物採買</label>
+            </div>
+            <div>
+              <input id="start4" type="checkbox" name="coldstart" value="親子同樂">
+              <label for="start4">親子同樂</label>
+            </div>
+            <div>
+              <input id="start5" type="checkbox" name="coldstart" value="精彩活動">
+              <label for="start5">精彩活動</label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div>
+              <input id="start6" type="checkbox" name="coldstart" value="台式風味">
+              <label for="start6">台式風味</label>
+            </div>
+            <div>
+              <input id="start7" type="checkbox" name="coldstart" value="異國風情">
+              <label for="start7">異國風情</label>
+            </div>
+            <div>
+              <input id="start8" type="checkbox" name="coldstart" value="深夜小聚">
+              <label for="start8">深夜小聚</label>
+            </div>
+            <div>
+              <input id="start9" type="checkbox" name="coldstart" value="品味甜點">
+              <label for="start9">品味甜點</label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div>
+              <input id="start10" type="checkbox" name="coldstart" value="小資旅行">
+              <label for="start10">小資旅行</label>
+            </div>
+            <div>
+              <input id="start11" type="checkbox" name="coldstart" value="家族旅遊">
+              <label for="start11">家族旅遊</label>
+            </div>
+            <div>
+              <input id="start12" type="checkbox" name="coldstart" value="雙人同行">
+              <label for="start12">雙人同行</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn btn-success" onclick = "Redirect();">Redirect to Map Page</button>
+    </div>
+    
+  </div>
+
+  <script src="../static/js/register_page.js"></script>
+
+</body>
+
+</html>
