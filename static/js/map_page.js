@@ -12,14 +12,37 @@ function Select(render){
   return
 }
 
+function generate_current_table(current_spots){
+  let names = current_spots["names"]
+  names = names.reverse()
 
-function generate_spot_table(locations){
+  let result = ''
+  result += '<table class="table">'
+
+  result += '<thead><tr>'
+  result += '<th scope="col">Selected Spots</th>'
+  result += '</tr></thead>'
+
+  result += '<tbody>'
+  for(let name of names){
+    result += '<tr>';
+    result += '<td>' + name + '</td>';
+    result += '</tr>';
+  }
+  result += '</tbody>'
+  result += '</table>'
+
+  return result
+}
+
+
+function generate_recommendation_table(locations){
   let result = '';
   result += '<table class="table">'
 
   result += '<thead><tr>'
   result += '<th scope="col">Name</th>'
-  result += '<th scope="col">Distance (km)</th>'
+  result += '<th scope="col">Distance</th>'
   result += '<th scope="col">Relative Count</th>'
   result += '<th scope="col">Select</th>'
   result += '</tr></thead>'
@@ -47,15 +70,28 @@ function doSomething(data) {
   document.getElementById("test").innerHTML = data.user_name;
 }
 
-function location_list(center_spot, recommended_spots) {
+function recommendation_list(recommended_spots) {
   var names = recommended_spots.names
   var distances = recommended_spots.distances
   var relative_counts = recommended_spots.relative_counts
 
+  var recommendation_list = []
+  for(let i in recommended_spots["names"]) {
+    recommendation_list.push([names[i], distances[i], relative_counts[i]])
+  }
+
+  return recommendation_list
+}
+
+function location_list(center_spot, recommended_spots) {
+  var names = recommended_spots.names
+  var lats = recommended_spots.lats
+  var lngs = recommended_spots.lngs
+
   var location_list = []
   location_list.push([center_spot[0], center_spot[1], center_spot[2]])
   for(let i in recommended_spots["names"]) {
-    location_list.push([names[i], distances[i], relative_counts[i]])
+    location_list.push([names[i], lats[i], lngs[i]])
   }
 
   return location_list
@@ -69,6 +105,7 @@ axios.get('http://192.168.42.10:8000/map')
   console.log(response);
   var recommended_spots = response.data.recommended_spots;
   var center_spot = response.data.center_spot;
+  var current_spots = response.data.current_spots;
   var user = response.data.user;
 
   // Welcome message
@@ -77,14 +114,18 @@ axios.get('http://192.168.42.10:8000/map')
   document.getElementById("welcome_message").innerHTML = welcome_message;
 
   // Render recommendation spots table
-  let center_info = [center_spot["name"], '0', 'Last spot in current selected spots']
-  let recommended_list = location_list(center_info, recommended_spots)
-  let recommended_table = generate_spot_table(recommended_list)
+  let recommended_list = recommendation_list(recommended_spots)
+  let recommended_table = generate_recommendation_table(recommended_list)
   document.getElementById("recommend_spots").innerHTML = recommended_table
 
+  // Render current spots
+  let current_table = generate_current_table(current_spots)
+  document.getElementById("current_spots").innerHTML = current_table
+
   // Render Google map
-  center_info = [center_spot["name"], center_spot["lng"], center_spot["lat"]]
+  center_info = [center_spot["name"], center_spot["lat"], center_spot["lng"]]
   locations = location_list(center_info, recommended_spots)
+  console.log(locations)
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
