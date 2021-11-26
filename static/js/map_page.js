@@ -12,6 +12,17 @@ function Select(render){
   return
 }
 
+// function myFunction(e) {
+//   var input = document.getElementById('values');
+//   var buttons = document.getElementsByTagName('li');
+//   if(buttons[0].id === e.target.id) {
+//     input.value = 0;
+//   }
+//   else if(buttons[1].id === e.target.id) {
+//     input.value = parseInt(input.value) + 1;
+//   }
+// };
+
 function generate_current_table(current_spots){
   let names = current_spots["names"]
   names = names.reverse()
@@ -54,6 +65,7 @@ function generate_recommendation_table(locations){
     result += '<td>' + location[1] + '</td>';
     result += '<td>' + location[2] + '</td>';
     result += '<td>';
+    // result += '<button id="' + location[0] + '" class="btn btn-light" onclick="myFunction(event)">select</button>'
     result += '<button id="' + location[0] + '" class="btn btn-light">select</button>'
     result += '</td>';
     result += '</tr>';
@@ -65,10 +77,10 @@ function generate_recommendation_table(locations){
 }
 
 
-function doSomething(data) {
-  console.log(data);
-  document.getElementById("test").innerHTML = data.user_name;
-}
+// function doSomething(data) {
+//   console.log(data);
+//   document.getElementById("test").innerHTML = data.user_name;
+// }
 
 function recommendation_list(recommended_spots) {
   var names = recommended_spots.names
@@ -99,8 +111,8 @@ function location_list(center_spot, recommended_spots) {
 
 axios.get('http://192.168.42.10:8000/map')
 .then((response) => {
-  doSomething(response.data);
-
+  // doSomething(response.data);
+  var test000 = response.data;
   // Fetch response data
   console.log(response);
   var recommended_spots = response.data.recommended_spots;
@@ -151,14 +163,16 @@ axios.get('http://192.168.42.10:8000/map')
     })(marker, i));
   }
 
-  const select0 = document.getElementById(render_table[0][0]);
+  // Select event listeners
+  const select0 = document.getElementById(locations[1][0]);
   select0.addEventListener('click', (event) => {
-    document.getElementById("test").innerHTML = 'asdf';
-    axios.post('http://192.168.58.241:8000/recommend', {
-      test: "test"
+    // document.getElementById("test").innerHTML = 'asdf';
+    axios.post('http://192.168.42.10:8000/recommend_api', {
+      user_name: user["name"],
+      selected_name: locations[1][0]
     }).then((response) => {
-      alert(response.data.message);
+      console.log(response.data.message)
+      location.reload()
     })
   });
 })
-

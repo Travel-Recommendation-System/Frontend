@@ -1,6 +1,8 @@
 function Redirect() {
-    location.replace('/Users/sunny/Desktop/eyes_frontend/templates/map_page.html')
+    location.replace('localhost:3000/templates/map_page.html')
 }
+
+console.log("asdf")
 
 const form  = document.getElementById('signup');
 form.addEventListener('submit', (event) => {
@@ -24,18 +26,30 @@ form.addEventListener('submit', (event) => {
         }
     }
 
-    // alert(coldstart_selected)
+    // alert(name_value)
     // alert(gender_selected)
-
+    // console.log(name_value)
 
     // Send a POST request to url
-    axios.post('http://192.168.58.241:8000/signup', {
+    // var data = new URLSearchParams();
+    // data.append('username', name_value);
+    // data.append('origin', origin_value);
+    // data.append('age', age_value)
+    // data.append('gender', gender_selected)
+    // data.append('coldstart', coldstart_selected)
+    axios.post('http://192.168.42.10:8000/signup', {
+        // "test_String"
         username: name_value,
         origin: origin_value,
         age: age_value,
         gender: gender_selected,
         coldstart: coldstart_selected
-    }).then((response) => {
+        // data
+    }
+        // headers: {
+        //     'Content-Type': 'test/plain'
+        // }
+    ).then((response) => {
         console.log(response.data);
         console.log(response.status);
         console.log(response.statusText);
