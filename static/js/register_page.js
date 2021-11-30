@@ -1,8 +1,7 @@
 function Redirect() {
-    location.replace('localhost:3000/templates/map_page.html')
+    location.replace('http://localhost:3000/templates/map_page.html')
 }
 
-console.log("asdf")
 
 const form  = document.getElementById('signup');
 form.addEventListener('submit', (event) => {
@@ -26,18 +25,8 @@ form.addEventListener('submit', (event) => {
         }
     }
 
-    // alert(name_value)
-    // alert(gender_selected)
-    // console.log(name_value)
-
     // Send a POST request to url
-    // var data = new URLSearchParams();
-    // data.append('username', name_value);
-    // data.append('origin', origin_value);
-    // data.append('age', age_value)
-    // data.append('gender', gender_selected)
-    // data.append('coldstart', coldstart_selected)
-    axios.post('http://192.168.42.10:8000/signup', {
+    axios.post('http://192.168.58.160:8000/signup', {
         // "test_String"
         username: name_value,
         origin: origin_value,
@@ -56,18 +45,5 @@ form.addEventListener('submit', (event) => {
         console.log(response.headers);
         console.log(response.config);
         alert(response.data.message);
-
-        if(response.data.message == "POST, this is a new user") {
-            alert(response.data.message);
-            // window.location.href = 'file:///Users/sunny/Desktop/eyes_frontend/templates/map_page.html';
-            // window.location.href = '/Users/sunny/Desktop/eyes_frontend/templates/map_page.html';
-        }
-        else if(response.data.message == "POST, this is not a new user") {
-            // window.location.href = 'register_page.html';
-            // window.location.href = '/Users/sunny/Desktop/eyes_frontend/templates/register_page.html';
-        }
     });
-
-    // window.location.href = '/Users/sunny/Desktop/eyes_frontend/templates/map_page.html';
-    // window.location.replace('/Users/sunny/Desktop/eyes_frontend/templates/map_page.html')
 });
