@@ -26,7 +26,7 @@ form.addEventListener('submit', (event) => {
     }
 
     // Send a POST request to url
-    axios.post('http://192.168.58.160:8000/signup', {
+    axios.post('http://192.168.42.10:8000/signup', {
         // "test_String"
         username: name_value,
         origin: origin_value,

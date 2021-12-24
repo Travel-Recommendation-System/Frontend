@@ -1,5 +1,5 @@
 function myFunction(e) {
-  axios.post('http://192.168.58.160:8000/recommend_api', {
+  axios.post('http://192.168.42.10:8000/recommend_api', {
     user_name: 'test_user',
     selected_name: e.target.id
   }).then((response) => {
@@ -91,7 +91,7 @@ function location_list(center_spot, recommended_spots) {
 }
 
 
-axios.get('http://192.168.58.160:8000/map')
+axios.get('http://192.168.42.10:8000/map')
 .then((response) => {
   // Fetch response data
   console.log(response);
